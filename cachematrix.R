@@ -12,20 +12,21 @@ makeCacheMatrix <- function(x = matrix()) {
     }
 
     get <- function() x
-    
+
     setReverse <- function(rev) revMatrix <<- rev
-    
+
     getReverse <- function() revMatrix
-    
+
     list(set = set, get = get,  setReverse = setReverse, getReverse = getReverse)
 }
 
 
-## Write a short comment describing this function
+## function to calculate reverse matrix on cache data
 
 cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
+
     revMatrix <- x$getReverse()
+
     if(!is.null(revMatrix)) {
         message("getting cached data")
         return(revMatrix)
@@ -33,8 +34,8 @@ cacheSolve <- function(x, ...) {
 
     data <- x$get()
     revMatrix <- solve(data)
-
     x$setReverse(revMatrix)
+
     revMatrix
 }
 
